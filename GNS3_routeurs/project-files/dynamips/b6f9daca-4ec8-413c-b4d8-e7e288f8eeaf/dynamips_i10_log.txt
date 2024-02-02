@@ -1,0 +1,47 @@
+Feb 02 14:21:28.296 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Feb 02 14:21:28.296 HYPERVISOR: Started on IP = localhost, TCP port = 56369.
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: hypervisor version 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\mendo\OneDrive\Escritorio\Projet GNS3_version_finale\GNS3_routeurs\project-files\dynamips 
+Feb 02 14:21:28.787 GENERAL: working_dir=C:\Users\mendo\OneDrive\Escritorio\Projet GNS3_version_finale\GNS3_routeurs\project-files\dynamips
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\mendo\OneDrive\Escritorio\Projet GNS3_version_finale\GNS3_routeurs\project-files\dynamips\b6f9daca-4ec8-413c-b4d8-e7e288f8eeaf 
+Feb 02 14:21:28.787 GENERAL: working_dir=C:\Users\mendo\OneDrive\Escritorio\Projet GNS3_version_finale\GNS3_routeurs\project-files\dynamips\b6f9daca-4ec8-413c-b4d8-e7e288f8eeaf
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm create J 10 c7200 
+Feb 02 14:21:28.787 VM: VM J created.
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm set_con_tcp_port J 5023 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: c7200 get_mac_addr J 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm slot_add_binding J 0 0 C7200-IO-FE 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm set_disk0 J 0 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm set_exec_area J 64 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm set_ios J C:/Users/mendo/Downloads/c7200-advipservicesk9-mz.152-4.S5.image 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: c7200 set_mac_addr J ca0a.67a0.0000 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm set_nvram J 512 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm set_ram J 512 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm slot_remove_binding J 0 0 
+Feb 02 14:21:28.787 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:21:28.802 HYPERVISOR: exec_cmd: vm slot_add_binding J 0 0 C7200-IO-GE-E 
+Feb 02 14:21:28.802 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:21:28.802 HYPERVISOR: exec_cmd: vm slot_add_binding J 1 0 PA-GE 
+Feb 02 14:21:28.802 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:21:28.802 HYPERVISOR: exec_cmd: vm slot_add_binding J 2 0 PA-GE 
+Feb 02 14:21:28.802 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:21:28.802 HYPERVISOR: exec_cmd: vm slot_add_binding J 3 0 PA-GE 
+Feb 02 14:21:34.093 HYPERVISOR: exec_cmd: nio create_udp udp-84692bf5-6a4d-4fc3-a1ee-0dd0dad3b61c 10076 127.0.0.1 10077 
+Feb 02 14:21:34.329 HYPERVISOR: exec_cmd: vm slot_add_nio_binding J 0 0 udp-84692bf5-6a4d-4fc3-a1ee-0dd0dad3b61c 
+Feb 02 14:21:34.329 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:21:34.706 HYPERVISOR: exec_cmd: nio create_udp udp-8e5ce374-8366-46ce-ac21-179948984a08 10088 127.0.0.1 10089 
+Feb 02 14:21:34.706 HYPERVISOR: exec_cmd: vm slot_add_nio_binding J 1 0 udp-8e5ce374-8366-46ce-ac21-179948984a08 
+Feb 02 14:21:34.721 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:21:34.833 HYPERVISOR: exec_cmd: nio create_udp udp-20d46f42-11fc-4e27-b9f1-9d885cba6f22 10098 127.0.0.1 10099 
+Feb 02 14:21:34.833 HYPERVISOR: exec_cmd: vm slot_add_nio_binding J 2 0 udp-20d46f42-11fc-4e27-b9f1-9d885cba6f22 
+Feb 02 14:21:34.833 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:21:34.895 HYPERVISOR: exec_cmd: nio create_udp udp-dbdd7dd9-132a-47af-a4c0-76f94d5348e1 10104 127.0.0.1 10105 
+Feb 02 14:21:34.910 HYPERVISOR: exec_cmd: vm slot_add_nio_binding J 3 0 udp-dbdd7dd9-132a-47af-a4c0-76f94d5348e1 
+Feb 02 14:21:34.910 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:23:39.224 HYPERVISOR: exec_cmd: vm set_ghost_status J 2 
+Feb 02 14:23:39.224 HYPERVISOR: exec_cmd: vm set_ghost_file J C:\Users\mendo\OneDrive\Escritorio\Projet GNS3_version_finale\GNS3_routeurs\project-files\dynamips\c7200-advipservicesk9-mz.152-4.S5.image-512.ghost 
+Feb 02 14:23:39.224 HYPERVISOR: exec_cmd: vm get_status J 
+Feb 02 14:23:39.224 HYPERVISOR: exec_cmd: vm set_config J configs\i10_startup-config.cfg 
+Feb 02 14:23:39.224 HYPERVISOR: exec_cmd: vm start J 
+Feb 02 14:24:34.447 HYPERVISOR: exec_cmd: vm extract_config J 

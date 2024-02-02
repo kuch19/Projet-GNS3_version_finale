@@ -15,7 +15,7 @@
                     "2001:db8:8::0/64",
                     "2001:db8:9::0/64",
                     "2001:db8:10::0/64",
-                    "2001:db8:61::0/64",
+                    "2001:db8:91::0/64",
                     "2001:db8:12::0/64"
                 ]
             },
@@ -23,7 +23,7 @@
                 "peers": [
                     "2001:db8:11::1",
                     "2001:db8:22::1",
-                    "2001:db8:34::1",
+                    "2001:db8:95::1",
                     "2001:db8:44::1",
                     "2001:db8:55::1",
                     "2001:db8:66::1",
@@ -62,7 +62,7 @@
 		    "address": "2001:db8:11::1/128",
                     "peers": [
                         "2001:db8:22::1", 
-                        "2001:db8:34::1", 
+                        "2001:db8:95::1", 
                         "2001:db8:44::1", 
                         "2001:db8:55::1", 
                         "2001:db8:66::1", 
@@ -107,7 +107,7 @@
 		    "address": "2001:db8:22::1/128",
                     "peers": [
                         "2001:db8:11::1",
-                        "2001:db8:34::1",
+                        "2001:db8:95::1",
                         "2001:db8:44::1",
                         "2001:db8:55::1",
                         "2001:db8:66::1",
@@ -135,21 +135,21 @@
                     },
                     {
                         "interfaceName": "Loopback0",
-                        "ipAddress": "2001:db8:34::1",
+                        "ipAddress": "2001:db8:95::1",
                         "description": "iBGP Loopback Interface"
                     }
                 ],
                 "RIP": {
                     "networks": [
-                        "2001:db8:2::1/64",
-                        "2001:db8:3::1/64",
-                        "2001:db8:5::1/64"
+                        "2001:db8:2::0/64",
+                        "2001:db8:3::0/64",
+                        "2001:db8:5::0/64"
                     ],
                     "process_name": "net"
                 },
                 "iBGP": {
                     "routeurId": "3.3.3.1",
-	  	    "address": "2001:db8:34::1/128",
+	  	            "address": "2001:db8:95::1/128",
                     "peers": [
                         "2001:db8:11::1",
                         "2001:db8:22::1",
@@ -204,7 +204,7 @@
                     "peers": [
                         "2001:db8:11::1",
                         "2001:db8:22::1",
-                        "2001:db8:34::1",
+                        "2001:db8:95::1",
                         "2001:db8:55::1",
                         "2001:db8:66::1",
                         "2001:db8:77::1"
@@ -255,7 +255,7 @@
                     "peers": [
                         "2001:db8:11::1",
                         "2001:db8:22::1",
-                        "2001:db8:34::1",
+                        "2001:db8:95::1",
                         "2001:db8:44::1",
                         "2001:db8:66::1",
                         "2001:db8:77::1"
@@ -277,7 +277,7 @@
                     },
                     {
                         "interfaceName": "GigabitEthernet1/0",
-                        "ipAddress": "2001:db8:61::1/64",
+                        "ipAddress": "2001:db8:91::1/64",
                         "description": "Interface towards AS Y(H)"
                     },
                     {
@@ -290,7 +290,6 @@
                     "networks": [
                         "2001:db8:7::0/64",
                         "2001:db8:10::0/64"
-                        "2001:db8:61::0/64"
                     ],
                     "process_name": "net"
                 },
@@ -300,7 +299,7 @@
                     "peers": [
                         "2001:db8:11::1",
                         "2001:db8:22::1",
-                        "2001:db8:34::1",
+                        "2001:db8:95::1",
                         "2001:db8:44::1",
                         "2001:db8:55::1",
                         "2001:db8:77::1"
@@ -309,8 +308,9 @@
                 },
                 "eBGP": {
                     "neighbor": {
-                        "ipAddress": ["2001:db8:61::2","2001:db8:81::1"],
+                        "ipAddress": ["2001:db8:91::2","2001:db8:81::1"],
                         "remoteAsn": 200,
+                        "interface" : "GigabitEthernet1/0",
                         "relationship": "customer",
                         "route_map_in": {
                             "community": "customer",
@@ -359,11 +359,11 @@
                 },
                 "iBGP": {
                     "routeurId": "7.7.7.1",
-		    "address": "2001:db8:77::1/128",
+		            "address": "2001:db8:77::1/128",
                     "peers": [
                         "2001:db8:11::1",
                         "2001:db8:22::1",
-                        "2001:db8:34::1",
+                        "2001:db8:95::1",
                         "2001:db8:44::1",
                         "2001:db8:55::1",
                         "2001:db8:66::1"
@@ -374,6 +374,7 @@
                     "neighbor": {
                         "ipAddress": ["2001:db8:12::2","2001:db8:82::1"],
                         "remoteAsn": 200,
+                        "interface" : "GigabitEthernet2/0",
                         "relationship": "customer",
                         "route_map_in": {
                             "community": "customer",
@@ -398,7 +399,7 @@
             "OSPF": {
                 "processId": 1,
                 "networks": [
-                    "2001:db8:61::0/64",
+                    "2001:db8:91::0/64",
                     "2001:db8:12::0/64",
                     "2001:db8:14::0/64",
                     "2001:db8:15::0/64",
@@ -408,7 +409,7 @@
                     "2001:db8:19::0/64",
                     "2001:db8:20::0/64",
                     "2001:db8:21::0/64",
-                    "2001:db8:22::0/64",
+                    "2001:db8:24::0/64",
                     "2001:db8:23::0/64"
                 ]
             },
@@ -441,7 +442,7 @@
                     },
                     {
                         "interfaceName": "GigabitEthernet1/0",
-                        "ipAddress": "2001:db8:61::2/64",
+                        "ipAddress": "2001:db8:91::2/64",
                         "Description": "Interface towards AS X(F)"
                     },
                     {
@@ -463,11 +464,6 @@
                             "interfaceName": "GigabitEthernet2/0",
                             "area": "0.0.0.0",
                             "ospfCost": 15
-                        },
-                        {
-                            "interfaceName": "GigabitEthernet1/0",
-                            "area": "0.0.0.0",
-                            "ospfCost": 15
                         }
                     ]
                 },
@@ -486,9 +482,11 @@
                 },
                 "eBGP": {
                     "neighbor": {
-                        "ipAddress": ["2001:db8:61::1/64", "2001:db8:66::1"],
+                        "ipAddress": ["2001:db8:91::1/64", "2001:db8:66::1"],
                         "remoteAsn": 100,
+                        "interface" : "GigabitEthernet1/0",
                         "relationship": "provider",
+
                         "route_map_in": {
                             "community": "provider",
                             "action": "permit",
@@ -542,17 +540,12 @@
                                 "interfaceName": "GigabitEthernet1/0",
                                 "area": "0.0.0.0",
                                 "ospfCost": 5
-                            },
-                            {
-                                "interfaceName": "GigabitEthernet2/0",
-                                "area": "0.0.0.0",
-                                "ospfCost": 5
                             }
                         ]
                     },
                     "iBGP": {
                         "routeurId": "2.1.2.2",
-			"address": "2001:db8:82::1/128",
+			            "address": "2001:db8:82::1/128",
                         "peers": [
                             "2001:db8:81::1",
                             "2001:db8:83::1",
@@ -567,6 +560,7 @@
                         "neighbor": {
                             "ipAddress": ["2001:db8:12::1", "2001:db8:77::1"],
                             "remoteAsn": 100,
+                            "interface" : "GigabitEthernet2/0",
                             "relationship": "provider",
                             "route_map_in": {
                                 "community": "provider",
@@ -743,7 +737,7 @@
                             },
                             {
                                 "interfaceName": "GigabitEthernet1/0",
-                                "ipAddress": "2001:db8:22::2/64",
+                                "ipAddress": "2001:db8:24::2/64",
                                 "Description": "Interface towards routeur N",
                                 "ospfCost": 15
                             },
@@ -853,7 +847,7 @@
                         "interfaces": [
                             {
                                 "interfaceName": "GigabitEthernet1/0",
-                                "ipAddress": "2001:db8:22::2/64",
+                                "ipAddress": "2001:db8:24::2/64",
                                 "Description": "Interface towards routeur L",
                                 "ospfCost": 15
                             },

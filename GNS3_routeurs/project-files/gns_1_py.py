@@ -8,7 +8,7 @@ import json
 
 def generate_config(json_data, output_dir):
     
-    for AS in json_data.keys():
+    for AS in json_data.keys(): 
         
         for router, config in json_data[AS]['routers'].items():
             
@@ -21,6 +21,7 @@ def generate_config(json_data, output_dir):
                     file.write(f"interface {interface['interfaceName']}\n")
                     start_interface(file, interface)
                     file.write(f" ipv6 address {interface['ipAddress']}\n")
+                    file.write(" ipv6 enable\n")
                     file.write(" no shutdown\n")
                     if 'RIP' in config:
                         file.write (f" ipv6 rip {config['RIP']['process_name']} enable \n")
@@ -56,7 +57,13 @@ def generate_config(json_data, output_dir):
                     if 'iBGP' in config:
                         asn = json_data[AS]['autonomousSystem']
                         file.write(f" redistribute bgp {asn} include-connected \n")
+
+                    if 'eBGP' in config :
+                        conf_ebgp=config['eBGP']['neighbor']
+                        print(conf_ebgp)
+                        file.write(f"passive-interface {conf_ebgp['interface']}")    
                     file.write("\n"*3)
+
                         #file.write("exit")
                     
                     #file.write("exit\n")
@@ -66,11 +73,14 @@ def generate_config(json_data, output_dir):
                     bgp_id=config['iBGP']['routeurId']
                     file.write(f"router bgp {asn}\n")
                     file.write(" bgp log-neighbor-changes\n")
-                    file.write(f" bgp router-id {bgp_id} \n")
+                    file.write(f" bgp router-id {bgp_id} \n") 
                     
                     for peer in config['iBGP']['peers']:
                         file.write(f" neighbor {peer} remote-as {asn}\n")
-
+                        file.write(f" neighbor {peer} update-source Loopback0\n")
+                    file.write("!\n")
+                    
+                    
                     if 'eBGP' in config:
                         asn_d = json_data[AS]['autonomousSystem']
                         conf_ebgp = dict(config['eBGP'])
@@ -78,27 +88,39 @@ def generate_config(json_data, output_dir):
                         for neighbor, dico in conf_ebgp.items():
                             #print(neighbor)
                             asn_a = dico['remoteAsn']
-                            
+                             
                             for neighbor_ip in dico['ipAddress']:
                                 file.write(f" neighbor {neighbor_ip} remote-as {asn_a}\n")
-                        file.write(" no auto-summary \n")
-                        file.write(" !\n")
 
-                        file.write(" address-family ipv6 unicast\n")
+                    file.write("!\n")
+                    file.write("address-family ipv6 unicast\n")
+                    for peer in config['iBGP']['peers']:
+                        file.write(f" neighbor {peer} activate\n")
+                    
+                        
+                    
+                    if 'eBGP' in config:  
                         
                         for neighbor, dico in conf_ebgp.items():
                             for neighbor_ip in dico['ipAddress']:
                                 file.write(f" neighbor {neighbor_ip} activate\n")
                         
                         if 'RIP' in config:
-                            file.write(f" redistribute rip {config['RIP']['process_name']} ")
-                            file.write("no synchronization")
+                            rp=json_data[AS]['routingProtocols']
+                            for network in rp['RIP']['networks']:
+                                file.write(f" network {network}\n")
+                            
                         if 'OSPF' in config:
+                            rp=json_data[AS]['routingProtocols']
+                            
+                            for network in rp['OSPF']['networks']:
+                                file.write(f" network {network}\n")
                             file.write(" redistribute ospf 1 match internal external 1 external 2\n")
-                        file.write(f" network {config['iBGP']['address']}\n")
-                        file.write(" exit-address-family \n")
-                        file.write("!\n"*2)
-                        file.write("no ip http server\nno ip http secure-server\n!\n!\nno cdp log mismatch duplex\n")
+                        #file.write(f" network {config['iBGP']['address']}\n")
+                    file.write("exit-address-family \n")
+                    file.write("!\n"*2)
+                    
+                    file.write("no ip http server\nno ip http secure-server\n!\n!\nno cdp log mismatch duplex\n")
 
 
                     file.write("!\n")
@@ -124,11 +146,12 @@ def debut_cfg(file, router):
     file.write("!\n"*4)
     file.write("ipv6 unicast-routing \n")  
     file.write("!\n"*4)
+    file.write("multilink bundle-name authenticated\n")
     file.write("ip tcp synwait-time 5\n")
     file.write("!\n")
 
 def start_interface(file, interface):
-    file.write(" no ip address\n duplex auto\n speed auto\n")
+    file.write(" no ip address\n duplex auto\n speed auto\n negotiation full\n")
 
 def fin_cfg(file):
     file.write("!\n"*4)
@@ -147,3 +170,4 @@ with open(json_file, 'r') as file:
     data = json.load(file)
 
 generate_config(data, output_directory)
+
